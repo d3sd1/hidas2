@@ -1,0 +1,16 @@
+<form (ngSubmit)="submit()" [formGroup]="formData">
+  <input formControlName="from" placeholder="Introduce from" type="text">
+  <input formControlName="to" placeholder="Introduce to" type="text">
+  <button [disabled]="submitting" class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<h1 *ngIf="flightsInfo.flights.length > 0">Flights info:</h1>
+<app-flight-view *ngFor="let flight of flightsInfo.flights" [flight]="flight"></app-flight-view>
+
+
+<h1 *ngIf="flightsInfo.weather && flightsInfo.weather.length > 0">Weather info:</h1>
+<app-weather-view *ngFor="let singleWeather of flightsInfo.weather" [weather]="singleWeather"></app-weather-view>
+
+
+<!-- se utiliza ngmodel por la simplifidad del ejemplo, lo suyo seria usar formularios de template reference en formularios grandes y con validaciones complicadas -->
+<!-- no se crean submodulos y subcomponentes con router para no complicarnos la vida -->
